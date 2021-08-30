@@ -1,0 +1,27 @@
+/*
+ Theme Name:   Tech Future
+ Description:  Tech Future Html Theme
+ Author:       Elomie
+ Author URI:   https://themeforest.net/user/AalgiMan
+ Template:     Elomie
+ Version:      1.0.0
+ Text Domain:  Elomie
+*/
+
+//***Components
+//*****************************************************************************/
+@import "variables";
+@import "mixins";
+@import "keyframes";
+@import "functions";
+@import "reset";
+@import "responsive";
+@import "helpers";
+
+//***Add Css Files
+//*****************************************************************************/
+@import "../theme/header";
+@import "../theme/banner";
+@import "../theme/footer";
+@import "../theme/button";
+@import "../theme/pages";

@@ -1,0 +1,400 @@
+/*** Reset Css
+****************************************************************************/
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background-color: $body-color;
+	font-family: $primary-fonts;
+	color: $text-color;
+	font-size: $font-base;
+	font-weight: $font-base;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: $text-color;
+	font-weight: 900;
+	font-family: $secendary-fonts;
+	margin-bottom: 0;
+}
+
+h1 {
+	font-size: 42px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+a {
+	text-decoration: none;
+	@include transition();
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		outline: none;
+	}
+}
+
+a.link1 {
+	text-decoration: none;
+	@include transition();
+	color: $theme-color2;
+	position: relative;
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 2px;
+		background-color: currentColor;
+		@include transform(scaleX(0));
+		@include transition(transform 250ms ease-in);
+		transform-origin: right;
+	}
+
+	&:hover,
+	&:focus {
+		&:after {
+			@include transform(scaleX(1));
+			transform-origin: left;
+		}
+
+		color: $theme-color2;
+		text-decoration: none;
+		outline: none;
+	}
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+ul,
+ol {
+	padding-left: 0;
+	list-style: none;
+}
+
+ol {
+	li {
+		list-style: decimal inside;
+		padding: 0px;
+		margin: 0px;
+		line-height: 30px;
+	}
+}
+
+dl dt {
+	font-weight: 500;
+}
+
+dl dd {
+	font-weight: 300;
+}
+
+.list-none {
+	list-style: none;
+}
+
+svg,
+img {
+	max-width: 100%;
+}
+
+button:focus,
+a:focus,
+textarea:focus,
+input:focus,
+.form-control:focus,
+.btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+/*Header Top Sticky Css
+*****************************************************************************/
+.top-sticky {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 99999;
+}
+
+/*Tab Panel Css
+*****************************************************************************/
+.tab--panel .tab {
+	display: none;
+
+	&.tab-active {
+		display: block;
+	}
+}
+
+/*** Position Css
+ ****************************************************************************/
+.position-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate(-50%, -50%));
+	z-index: 9;
+}
+
+/*UL List Css 
+*****************************************************************************/
+.link-list1 {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		vertical-align: middle;
+
+		a {
+			padding: 0;
+			margin: 0;
+			color: $text-color;
+			@include transition(color .2s);
+			line-height: $font-xl;
+
+			&:hover {
+				color: $theme-color2;
+			}
+		}
+	}
+}
+
+.link-list2 {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		display: inline-block;
+		vertical-align: middle;
+
+		a {
+			color: $text-color;
+			@include transition(color .2s);
+			line-height: $font-xl;
+
+			&:hover {
+				color: $theme-color2;
+			}
+		}
+	}
+}
+
+.rating-area-ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		padding: 7px 0px;
+		display: inline-block;
+		color: #fec017;
+		@include fonts(12px, 14px, 500);
+		vertical-align: middle;
+
+		&.text {
+			@include fonts(13px);
+			margin-left: 3px;
+			color: #b3b3b3;
+		}
+	}
+}
+
+/*Toggler Button Css
+*****************************************************************************/
+.navbar-toggler {
+	border: none;
+	margin-right: 10px;
+
+	span {
+		display: block;
+		width: 25px;
+		height: 2px;
+		background: #fff;
+		margin: auto;
+		margin-bottom: 5px;
+		transition: all 400ms linear;
+		cursor: pointer;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&[aria-expanded="false"] span:nth-child(2) {
+		opacity: 1;
+	}
+
+	&[aria-expanded="true"] span:nth-child(2) {
+		opacity: 0;
+	}
+
+	&[aria-expanded="true"] span:first-child {
+		transform: rotate(-45deg);
+		position: relative;
+		top: 7.5px;
+	}
+
+	&[aria-expanded="true"] span:last-child {
+		transform: rotate(45deg);
+		bottom: 6px;
+		position: relative;
+	}
+}
+
+/*Section Title Css
+*****************************************************************************/
+.section-title {
+	text-align: center;
+	position: relative;
+	margin: 15px 0;
+
+
+	.title {
+		@include fonts(14px, 40px, 400, #989898);
+		margin-bottom: 10px;
+		letter-spacing: .3px;
+
+		span {
+			display: block;
+			@include fonts(22px, 600, #2d2a2a);
+			line-height: 1.4;
+		}
+	}
+
+	p {
+		margin-bottom: 10px;
+	}
+}
+
+section {
+	padding: 60px 0;
+	overflow: hidden;
+}
+
+
+.container {
+	max-width: width 1222px;
+}
+
+
+.shape1 {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.shape2 {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+.shape3 {
+	position: absolute;
+	left: 0;
+	bottom: 10%;
+}
+
+.shape4 {
+	position: absolute;
+	right: 0;
+	bottom: 5%;
+}
+
+/*Carousel Control*/
+.controls-top {
+	.btn-floating {
+		position: absolute;
+		z-index: 999;
+		top: 50%;
+		@include fonts(22px, 600, #2d2a2a);
+		@include transform(translateY(-50%));
+		@include transition(left .3s, right, .3s);
+		visibility: hidden;
+
+		&[data-slide="prev"] {
+			left: -40px;
+		}
+
+		&[data-slide="next"] {
+			right: -40px;
+		}
+	}
+}
+
+.rounded-50 {
+	@include border-radius(50px !important);
+}
+
+.home-page .header_menu_bottom_area {
+	display: block !important;
+}
+
+.card-header {
+	position: relative;
+	@include fonts(20px, 26px, 700, #2a2a2a, $primary-fonts);
+}
+
+.form-group label {
+	@include fonts(13px, 500, #333, $primary-fonts);
+	text-transform: none;
+	letter-spacing: 1.2px;
+
+}
+
+.form-control {
+	padding: 5px 15px;
+	border: 1px solid #555;
+	width: 100%;
+	letter-spacing: 1px;
+	box-sizing: border-box;
+	@include border-radius(0);
+	outline: 0;
+	font-weight: normal;
+
+	&:focus {
+		-moz-box-shadow: none !important;
+		-webkit-box-shadow: none !important;
+		box-shadow: none !important;
+		border-color: $theme-color2;
+		font-weight: bold;
+		outline-width: 0
+	}
+}

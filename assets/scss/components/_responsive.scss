@@ -1,0 +1,162 @@
+/*** MEDIA QUERY MANAGER
+****************************************************************************/
+// Responsive Size Variable
+//////////////////////////////////////////////////////////////////////////////
+$responsive_version_size: (smallest-phone: 320px,
+	small-phone: 420px,
+	phone: 480px,
+	small-tab: 600px,
+	tab-port: 768px,
+	tab-land: 991px,
+	desktop: 1200px,
+	big-desktop: 1800px,
+);
+
+// Responsive Css
+//////////////////////////////////////////////////////////////////////////////
+@mixin respond ($breakpoint) {
+
+	@each $responsive_version_name,
+	$responsive_version_size in $responsive_version_size {
+		@if $breakpoint==$responsive_version_name {
+			@media (max-width: #{$responsive_version_size}) {
+				@content;
+			}
+		}
+	}
+}
+
+// Display Flex Css
+//////////////////////////////////////////////////////////////////////////////
+@each $responsive_version_name,
+$responsive_version_size in $responsive_version_size {
+
+	// Display Flex
+	.d-flex-#{$responsive_version_name} {
+		display: -ms-flexbox !important;
+		display: flex !important;
+
+		//Responsive
+		@include respond($responsive_version_name) {
+			display: block !important;
+		}
+	}
+
+	// Display Flex
+	.flex-fill-#{$responsive_version_name} {
+		-ms-flex: 1 1 auto !important;
+		flex: 1 1 auto !important;
+
+		//Responsive
+		@include respond($responsive_version_name) {
+			-ms-flex: none !important;
+			flex: none !important;
+		}
+	}
+
+	//Text Align
+	//////////////////////////////////////////////////////////////////////////////
+	@each $text_align_area in left,
+	center,
+	right {
+		.text-#{$text_align_area}-#{$responsive_version_name} {
+			text-align: $text_align_area !important;
+
+			//Responsive
+			@include respond($responsive_version_name) {
+				text-align: center !important;
+			}
+		}
+	}
+}
+
+//**************************************************************
+//Responsive Style
+//**************************************************************
+@include respond(desktop) {
+	.hide_in_desktop {
+		display: none !important;
+	}
+}
+
+@include respond(tab-land) {
+
+	//max-width-991px
+	.hide_in_tab_port {
+		display: none !important;
+	}
+
+	.show_in_tab_port {
+		display: block !important;
+	}
+
+	.flex-fill-tab-land {
+		margin-left: auto !important;
+	}
+
+	.header_menu_bottom_area {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 300px;
+		height: 100% !important;
+		z-index: 9999;
+
+		.nav-tabs {
+			display: flex !important;
+		}
+	}
+
+	span.close-icon {
+		display: inline-block !important;
+	}
+
+
+}
+
+@include respond(tab-port) {
+
+	//max-width-768px
+	.header-top-area .single_button:last-child {
+		border-color: transparent;
+
+	}
+}
+
+@include respond(phone) {
+
+	.category_list {
+		overflow-y: auto;
+		max-height: calc(100vh - 100px);
+	}
+
+	.tt-sub-menu {
+		&:hover .tt-dropdown {
+			height: auto !important;
+		}
+
+		.tt-dropdown {
+			position: relative !important;
+			left: 13px !important;
+			top: 0 !important;
+			visibility: visible !important;
+			opacity: 1 !important;
+			border: none !important;
+			height: 0 !important;
+			overflow: hidden !important;
+			background-color: $theme-color !important;
+
+			li {
+				border-bottom-color: #fff !important;
+
+				&:hover {
+					background-color: rgba($theme-color2, .7) !important;
+				}
+
+				a {
+					color: #fff !important;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,409 @@
+//*** Mixin Css
+//****************************************************************************/
+@mixin prefix($declarations, $prefixes: ()) {
+
+   @each $property,
+   $value in $declarations {
+      @each $prefix in $prefixes {
+         #{'-' + $prefix + '-' + $property}: $value;
+      }
+
+      // Output standard non-prefixed declaration
+      #{$property}: $value;
+   }
+}
+
+@mixin transform($args: translate(-50%, -50%)) {
+   -webkit-transform: $args;
+   -moz-transform: $args;
+   -o-transform: $args;
+   transform: $args;
+}
+
+@mixin transition($transition...) {
+   -webkit-transition: $transition;
+   -moz-transition: $transition;
+   -o-transition: $transition;
+   transition: $transition;
+}
+
+@mixin transition-duration($duration...) {
+   -webkit-transition-duration: $duration;
+   -moz-transition-duration: $duration;
+   -o-transition-duration: $duration;
+   transition-duration: $duration;
+}
+
+@mixin transition-delay($delay...) {
+   -webkit-transition-delay: $delay;
+   -moz-transition-delay: $delay;
+   -o-transition-delay: $delay;
+   -ms-transition-delay: $delay;
+   transition-delay: $delay;
+}
+
+@mixin animation-delay($delay...) {
+   -webkit-animation-delay: $delay;
+   -moz-animation-delay: $delay;
+   -o-animation-delay: $delay;
+   -ms-animation-delay: $delay;
+   animation-delay: $delay;
+}
+
+
+@mixin animation($animation...) {
+   -webkit-animation: $animation;
+   -moz-animation: $animation;
+   -o-animation: $animation;
+   animation: $animation;
+}
+
+@mixin box-shadow ($boxShadow...) {
+   -webkit-box-shadow: $boxShadow;
+   -moz-box-shadow: $boxShadow;
+   -ms-box-shadow: $boxShadow;
+   -o-box-shadow: $boxShadow;
+   box-shadow: $boxShadow;
+}
+
+@mixin transition-property($property...) {
+   -webkit-transition-property: $property;
+   -moz-transition-property: $property;
+   -o-transition-property: $property;
+   transition-property: $property;
+}
+
+//*** Placeholder Mixins Css *************************************************/
+@mixin placeholder {
+   &.placeholder {
+      @content;
+   }
+
+   &:-moz-placeholder {
+      @content;
+   }
+
+   &::-moz-placeholder {
+      @content;
+   }
+
+   &::-webkit-input-placeholder {
+      @content;
+   }
+}
+
+//*** Image - Height & Width *************************************************/
+@mixin size($width, $height: $width, $lheight: $height) {
+   width: $width;
+   height: $height;
+
+   @if $lheight==none {}
+
+   @else {
+      line-height: $height;
+   }
+}
+
+//*** Gradient Mixins Css *************************************************/
+@mixin gradient($direction, $gradients...) {
+   background-color: nth($gradients, 1);
+   background: -webkit-linear-gradient($direction, $gradients...);
+   background: -moz-linear-gradient($direction, $gradients...);
+   background: -o-linear-gradient($direction, $gradients...);
+   background: linear-gradient($direction, $gradients...);
+}
+
+@mixin radial-gradient($args1, $args2, $args3, $args4) {
+   background: -webkit-radial-gradient(ellipse farthest-side at $args1, $args2 20%, $args3 50%, $args4 110%);
+   background: -moz-radial-gradient(ellipse farthest-side at $args1, $args2 20%, $args3 50%, $args4 110%);
+   background: -o-radial-gradient(ellipse farthest-side at $args1, $args2 20%, $args3 50%, $args4 110%);
+   background: radial-gradient(ellipse farthest-side at $args1, $args2 20%, $args3 50%, $args4 110%);
+}
+
+@mixin gradient-border($deg, $args1, $args2) {
+   border-image-source: -webkit-linear-gradient($deg, $args1, $args2);
+   border-image-source: -moz-linear-gradient($deg, $args1, $args2);
+   border-image-source: -o-linear-gradient($deg, $args1, $args2);
+   border-image-source: linear-gradient($deg, $args1, $args2);
+}
+
+@mixin border-radius($radius) {
+   -webkit-border-radius: $radius;
+   -moz-border-radius: $radius;
+   -ms-border-radius: $radius;
+   -o-border-radius: $radius;
+   border-radius: $radius;
+}
+
+@mixin filter ($filter-value) {
+   -webkit-filter: ($filter-value);
+   -moz-filter: ($filter-value);
+   -ms-filter: ($filter-value);
+   -o-filter: ($filter-value);
+   filter: ($filter-value);
+}
+
+
+//*** Animation Mixin Css *************************************************/
+@mixin CustomKeyframes($animation-name) {
+   @-webkit-keyframes #{$animation-name} {
+      @content;
+   }
+
+   @-moz-keyframes #{$animation-name} {
+      @content;
+   }
+
+   @-o-keyframes #{$animation-name} {
+      @content;
+   }
+
+   @keyframes #{$animation-name} {
+      @content;
+   }
+}
+
+//*** Animation Mixin Css *************************************************/
+@mixin keyframes_animation ($args) {
+   -webkit-animation: $args;
+   -moz-animation: $args;
+   -o-animation: $args;
+   animation: $args;
+}
+
+//*** Font Style Mixin Css *************************************************/
+@mixin fonts($args1: false, $args2: false, $args3: false, $args4: false, $args5: false) {
+   $font_weight_list: 100, 200, 300, 400, 500, 600, 700, 800, 900, thin, extralight, ultralight, light, normal, book, regular, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy;
+
+   @if $args1 {
+      @if type-of($args1)=='color' {
+         color: $args1;
+      }
+
+      @else if str-index(#{$args1}, "px") {
+         font-size: $args1;
+      }
+
+      @else if index($font_weight_list, $args1) {
+         font-weight: $args1;
+      }
+
+      @else if $args1==$primary-fonts {
+         font-family: $args1;
+      }
+
+      @else if $args1==$secendary-fonts {
+         font-family: $args1;
+      }
+
+      @else {
+         font-size: $args1;
+      }
+   }
+
+   @if $args2 {
+      @if type-of($args2)=='color' {
+         color: $args2;
+      }
+
+      @else if str-index(#{$args2}, "px") {
+         line-height: $args2;
+      }
+
+      @else if index($font_weight_list, $args2) {
+         font-weight: $args2;
+      }
+
+      @else if $args2==$primary-fonts {
+         font-family: $args2;
+      }
+
+      @else if $args2==$secendary-fonts {
+         font-family: $args2;
+      }
+
+      @else {
+         line-height: $args2;
+      }
+   }
+
+   @if $args3 {
+      @if type-of($args3)=='color' {
+         color: $args3;
+      }
+
+      @else if str-index(#{$args3}, "px") {
+         line-height: $args3;
+      }
+
+      @else if index($font_weight_list, $args3) {
+         font-weight: $args3;
+      }
+
+      @else if $args3==$primary-fonts {
+         font-family: $args3;
+      }
+
+      @else if $args3==$secendary-fonts {
+         font-family: $args3;
+      }
+
+      @else {
+         font-weight: $args3;
+      }
+   }
+
+   @if $args4 {
+      @if type-of($args4)=='color' {
+         color: $args4;
+      }
+
+      @else if str-index(#{$args4}, "px") {
+         line-height: $args4;
+      }
+
+      @else if index($font_weight_list, $args4) {
+         font-weight: $args4;
+      }
+
+      @else if $args4==$primary-fonts {
+         font-family: $args4;
+      }
+
+      @else if $args4==$secendary-fonts {
+         font-family: $args4;
+      }
+
+      @else {
+         color: $args4;
+      }
+   }
+
+   @if $args5 {
+      @if type-of($args5)=='color' {
+         color: $args5;
+      }
+
+      @else if str-index(#{$args5}, "px") {
+         line-height: $args5;
+      }
+
+      @else if index($font_weight_list, $args5) {
+         font-weight: $args5;
+      }
+
+      @else if $args5==$primary-fonts {
+         font-family: $args5;
+      }
+
+      @else if $args5==$secendary-fonts {
+         font-family: $args5;
+      }
+
+      @else {
+         font-family: $args5;
+      }
+   }
+}
+
+//*** Font Face Css *************************************************/
+@mixin fontface($name, $file, $weight: normal, $style: normal) {
+   @font-face {
+      font-family: "#{$name}";
+      src: url('../../fonts/#{$file}.eot');
+      src: url('../../fonts/#{$file}.eot?#iefix') format('embedded-opentype'),
+      url('../../fonts/#{$file}.woff') format('woff'),
+      url('../../fonts/#{$file}.ttf') format('truetype'),
+      url('../../fonts/#{$file}.svg?#webfont') format('svg');
+      font-weight: $weight;
+      font-style: $style;
+   }
+}
+
+//*** Overlay Css *************************************************/
+@mixin overlay($color : #000, $opacity : 0.7, $z_index: 0) {
+   position: relative;
+   z-index: $z_index;
+
+   &:after {
+      top: 0;
+      left: 0;
+      z-index: -1;
+      content: '';
+      position: absolute;
+      @include size(100%);
+      background-color: $color;
+      opacity: $opacity;
+   }
+
+}
+
+
+
+//*** Shape Mixin Css *************************************************/
+@mixin arrow ($direction, $size, $color) {
+   @if $direction==up {
+      border-left: $size solid transparent;
+      border-right: $size solid transparent;
+      border-bottom: $size solid $color;
+   }
+
+   @else if $direction==down {
+      border-left: $size solid transparent;
+      border-right: $size solid transparent;
+      border-top: $size solid $color;
+   }
+
+   @else if $direction==right {
+      border-top: $size solid transparent;
+      border-bottom: $size solid transparent;
+      border-left: $size solid $color;
+   }
+
+   @else if $direction==left {
+      border-top: $size solid transparent;
+      border-bottom: $size solid transparent;
+      border-right: $size solid $color;
+   }
+}
+
+//*** Position Mixin Css *************************************************/
+@mixin position($position:absolute, $top: null, $right: null, $bottom: null, $left: null, $content: "", $font-family:"Font Awesome 5 Pro", ) {
+   position: $position;
+   right: $right;
+   bottom: $bottom;
+   left: $left;
+   content: $content;
+
+   @if $content=="" {}
+
+   @else {
+      font-family: $font-family;
+   }
+
+   @if $top==50% {
+      top: 50%;
+      transform: translateY(-50%);
+   }
+
+   @else {
+      top: $top;
+   }
+}
+
+
+// Disable selection
+@mixin disable-selection {
+   -webkit-touch-callout: none;
+   /* iOS Safari */
+   -webkit-user-select: none;
+   /* Safari */
+   -khtml-user-select: none;
+   /* Konqueror HTML */
+   -moz-user-select: none;
+   /* Firefox */
+   -ms-user-select: none;
+   /* Internet Explorer/Edge */
+   user-select: none;
+   /* Non-prefixed version, currently supported by Chrome and Opera */
+}

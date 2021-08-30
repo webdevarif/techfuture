@@ -1,0 +1,51 @@
+/*Banner Area
+*****************************************************************************/
+.banner-area {
+    margin: 0;
+    padding: 0;
+    max-height: 500px;
+    position: relative;
+    background-color: #F5F5F5;
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+
+    &:hover .owl-nav button {
+        visibility: visible;
+        left: 10px;
+
+        &.owl-next {
+            right: 10px;
+        }
+    }
+
+    .owl-carousel {
+        position: inherit;
+    }
+
+    .single-banner-items {
+        text-align: center;
+        background-size: 90%;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        min-height: 500px;
+        width: 100%;
+
+        .text-title {
+            @include fonts(56px, 56px, 600, rgba(0, 0, 0, 0.75));
+            @include transform(matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1));
+            transform-origin: 50% 50% 0px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            @include fonts(16px, 26px, 400, rgba(0, 0, 0, 0.75));
+            @include transform(matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1));
+        }
+
+        .currancy_count {
+            display: block;
+            margin-bottom: 30px;
+            @include fonts(26px, 26px, 600, rgba(0, 0, 0, 0.75), $secendary-fonts);
+        }
+    }
+}

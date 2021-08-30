@@ -1,0 +1,22 @@
+//***Add Functions
+//*****************************************************************************/
+
+//Function For Font Weight[@weight(bold)]
+@function weight($weight-name){
+    @return map-get($font-weights, $weight-name);
+}
+
+//Function For Color Code [@Color(linkedin)]
+@function color($color-name){
+    @return map-get($custom_colors_variable, $color-name);
+}
+
+//Function For Version Base Color [@set-color($primary-color)]
+@function set-color($color){
+    @if (lightness($color) > 40%){
+        @return #000;
+    }
+    @else{
+        @return #fff;
+    }
+}

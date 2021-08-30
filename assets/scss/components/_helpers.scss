@@ -1,0 +1,151 @@
+/***Background Color Css
+***********************************************************************************/
+.bg{
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+
+    // Background fixed
+    .fixed {
+        background-attachment: fixed !important;
+    }
+
+    &-theme-color{
+        background-color: $theme-color !important;
+    }
+    &-theme-color2{
+        background-color: $theme-color2 !important;
+    }
+}
+
+/*** Overflow
+****************************************************************************/
+.overflow {
+    &-x {
+        overflow-x: auto;
+    }
+    &-y {
+        overflow-y: auto;
+    }
+    &-auto {
+        overflow: auto;
+    }
+}
+
+
+//*** Widgets
+//****************************************************************************/
+@mixin widgets($widgets_name: true, $args1: false, $args2: false,) {
+    // @01__ Dark Theme
+    @if $widgets_name == dark-theme{
+        background: darken($theme-color, 100%);
+        color: lighten($text-color, 100%);
+    }
+    // @02__ Social Icons
+    @if $widgets_name == social-icons{
+        $social-icons:(facebook, twiiter, linkedin, dribble, instagram, googleplus, pinterest, dropbox, flickr, tumblr, skype, youtube, github, whatsapp);
+        list-style: none;
+    
+        li{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            a{
+                display: block;
+                float: left;
+                line-height: 45px;
+                color: $text-color;
+                text-align: center;
+                font-size: 15px;
+                @include size(45px);
+                @include border-radius(50%);
+                @include transition();
+                @if $args1 == false{background-color: #e5e5e5;}//Args1 Use Background color
+                @else{background-color: $args1;}
+
+                &:hover{
+                    @if $args2 == false{background-color: $theme-color !important;}//Args2 Use Hover Background Color
+                    @else{background-color: $args2 !important;}
+                    color: #fff !important;
+                }
+                
+
+                &.facebook{color: #3b5998;}
+                &.twitter{color: #00aced;}
+                &.linkedin{color: #0077B5;}
+                &.dribble{color: #c73b65;}
+                &.googleplus{color: #d34836;}
+                &.instagram{color: #e2306a;}
+                &.pinterest{color: #c92228;}
+                &.dropbox{color: #3d9ae8;}
+                &.flickr{color: #0063DC;}
+                &.tumblr{color: #34526f;}
+                &.skype{color: #12a5f4;}
+                &.youtube{color: #c4302b;}
+                &.github{color: #323232;}
+                &.whatsapp{color: #1ebea5;}
+
+            }
+            // @each $social in $social-icons {
+            //     .#{$social}{background: url(../../img/#{$social}-icon.png) no-repeat;}
+            // }
+        }
+    }
+    // @02__ Social Icons Image
+    @if $widgets_name == social-image{
+        $social-icons:(facebook, twiiter, linkedin, dribble, instagram, googleplus, pinterest, dropbox, flickr, tumblr, skype, youtube, github, whatsapp);
+        list-style: none;
+    
+        li{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            a{
+                display: block;
+                float: left;
+                text-indent: -999px;
+                
+                @if $args1 == false{@include size(40px);}//Args1 Use font Size
+                @else{font-size: $args1;}
+                @if $args2 == false{line-height: 40px;}//Args1 Use Line Height
+                @else{line-height: $args1;}
+
+            }	
+            @each $social in $social-icons {
+                .#{$social}{background: url(../../img/#{$social}-icon.png) no-repeat;}
+            }
+        }
+    }
+    // @03__ Social Icons Image
+    @if $widgets_name == checked-list{
+        list-style: none;
+
+        li{
+            padding-left: 30px;
+            margin-bottom: 15px;
+            position: relative;
+            @include fonts(16px, 26px, 400, $text-color);
+
+            &::before{
+                content: '\f00c';
+                position: absolute;
+                display:inline-block;
+                font:normal normal normal 14px/1 FontAwesome;
+                font-size:12px;
+                text-rendering:auto;
+                -webkit-font-smoothing:antialiased;
+                -moz-osx-font-smoothing:grayscale;
+                left: 0;
+                top: 5px;
+                width: 17px;
+                height: 17px;
+                line-height: 17px;
+                text-align: center;                
+                @if $args1 == false{background-color: $theme-color;}//Args1 Use font Size
+                @else{background-color: $args1;}
+                @if $args2 == false{color: #fff;}//Args1 Use Line Height
+                @else{color: $args2;}
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+/*button Css
+*****************************************************************************/
+.btn {
+    padding: 9px 25px;
+    margin: 0;
+    text-transform: uppercase;
+    display: inline-block;
+    @include transition(background-color .6s, color .2s);
+    @include border-radius(0px);
+    @include fonts(11px, 16px, 700, #fff);
+
+    // Default hover effect
+    &:hover {
+        @include box-shadow(0 0 20px rgba($theme-color, .2));
+    }
+
+    // Custom Button Class Css
+    &--primary,
+    &--primary:focus {
+        background-color: $theme-color2;
+        border: 1px solid rgba($theme-color2, .2);
+        @include transition(border-color .2s, background-color .2s);
+        font-family: $primary-fonts;
+
+        &:hover {
+            border-color: #3d464d;
+            background: #3d464d;
+            color: #fff;
+        }
+    }
+
+    &--secendary,
+    &--secendary:focus {
+        background-color: transparent;
+        color: $theme-color2;
+        border-color: rgba($theme-color2, .3);
+
+        &:hover {
+            background-color: $theme-color2;
+            color: #fff;
+        }
+    }
+
+    // Button Icon Css
+    img {
+        margin-left: 6px;
+    }
+}
+
+
+.view_btn {
+    text-transform: uppercase;
+    border-bottom: 1px solid $theme-color2;
+    @include fonts(14px, 30px, #2d2a2a);
+    @include transition(all .2s ease);
+
+    &:hover {
+        opacity: .7;
+        color: #222;
+    }
+}

@@ -1,0 +1,342 @@
+/*Header Area
+*****************************************************************************/
+header {
+    background-color: $theme-color;
+
+    .sticky-wrapper {
+        height: 130px !important;
+
+        &.is-sticky .header-menu-area {
+            background-color: $theme-color;
+            z-index: 9999 !important;
+
+            .header_menu_area {
+                height: 70px !important;
+            }
+
+            .header_search_box {
+                display: none;
+                &.bottom{
+                    display: flex;
+                }
+            }
+        }
+    }
+    
+    .header-top-area {
+        border-bottom: 1px solid rgba(58, 77, 105, 1);
+        @include transition(background-color .2s ease);
+
+        .header_text {
+            @include fonts(16px, 600, rgba(255, 255, 255, .8));
+            letter-spacing: 1px;
+            line-height: 2.6;
+            vertical-align: baseline;
+
+            span.hot_line {
+                color: $theme-color2;
+            }
+
+            .show_in_tab_port {
+                display: none;
+            }
+        }
+
+        .single_button {
+            padding: 0px 10px;
+            letter-spacing: .2px;
+            display: inline-block;
+            text-transform: uppercase;
+            @include fonts(12px, 41px, 400, #fff, $secendary-fonts);
+            border-right: 1px solid rgba(255, 255, 255, .25);
+
+            a {
+                color: #fff;
+                @include transition(all .25s ease, height 0s ease);
+
+                &:hover {
+                    opacity: .7;
+                }
+            }
+
+            &.social_icons {
+                margin-bottom: 0;
+
+                a {
+                    font-size: 14px;
+                    display: inline-block;
+                    @include size(25px);
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    // Menu Overlay
+    .menu_overlay {
+        opacity: 0;
+        z-index: 99;
+        @include size(0%);
+        background-color: #000;
+        @include position(fixed, $top: 0, $left: 0);
+
+        &.show {
+            @include size(100%);
+            opacity: .7;
+        }
+    }
+
+    nav.navbar {
+        .header_menu_area {
+            height: 105px;
+            align-items: center;
+            @include transition(height .2s ease-in-out);
+            width: 100%;
+            @include respond(tab-land){
+                height: 75px;
+            }
+
+
+            .site-logo {
+                max-width: 245px;
+            }
+            .header-menu-area-links {
+                text-align: right;
+
+                .single_button {
+                    display: inline-block;
+                    letter-spacing: 1px;
+                    padding: 0px 10px;
+                    text-transform: uppercase;
+                    vertical-align: baseline;
+                    border: none;
+                    background: none;
+                    @include fonts(13px, 40px, 700, #fff, $secendary-fonts);
+
+                    &:last-child {
+                        padding-right: 0;
+                    }
+
+                    &:hover {
+                        opacity: .9;
+                    }
+
+                    &.cart-subtotal,
+                    .hot_line {
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+
+                    span.hot_line {
+                        color: $theme-color2;
+                    }
+
+                    a {
+                        position: relative;
+                        @include fonts(20px, 30px, 700, #fff, $secendary-fonts);
+                        vertical-align: middle;
+
+                        span.count {
+                            position: absolute;
+                            top: -5px;
+                            right: -9px;
+                            z-index: 1;
+                            display: inline-block;
+                            text-align: center;
+                            color: #fff;
+                            @include fonts(10px, 700, #fff, $secendary-fonts);
+                            background-color: $theme-color2;
+                            @include size(15px);
+                            @include border-radius(50px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .header_bottom_input{
+        display: none;
+        @include respond(tab-land){
+            display: block;
+        }
+    }
+    .header_search_box {
+        overflow: hidden;
+        @include border-radius(50px);
+        max-width: 570px;
+        margin: 0px 20px;
+        @include transition(.2s ease);
+
+        .form-control {
+            height: 41px;
+            padding-left: 30px;
+        }
+
+        button[type=button] {
+            padding: 0 20px;
+            border: none;
+            cursor: pointer;
+            background-color: $theme-color2;
+            @include fonts(20px, 20px, #fff);
+
+            &:hover {
+                opacity: .9;
+            }
+        }
+    }
+
+    .header_menu_bottom_area {
+        background-color: #fff;
+        border-bottom: 1px solid rgba(129, 129, 129, .15);
+        height: 50px;
+
+        // Responsive 991px
+        @include respond(tab-land) {
+            @include transform(translateX(-120%));
+            @include transition(transform .2s ease);
+
+            &.show {
+                @include transform(translateX(-0%));
+            }
+        }
+
+        .menu_box_area {
+            padding: 0;
+            margin: 0 15px;
+            position: relative;
+            border: 1px solid rgba(129, 129, 129, .15);
+            background-color: #fff;
+            z-index: 9;
+
+            // Responsive 
+            @include respond(tab-land) {
+                margin: 0;
+            }
+
+            // overlay and toggle close 
+            span.close-icon.fal.fa-times {
+                font-size: 18px;
+                text-align: center;
+                background-color: $theme-color2;
+                color: #fff;
+                @include position(absolute, $right: -40px, $top: 50px);
+                @include size(40px);
+                @include transition(font-size .3s);
+                display: none;
+
+                &:hover {
+                    font-size: 22px;
+                }
+            }
+
+            // Menus & Categories 
+            .menu_nav,
+            .category_list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    margin: 0;
+                    position: relative;
+                    padding-right: 25px;
+                    border-bottom: 1px solid rgba(129, 129, 129, .15);
+                    @include transition(background-color .2s ease);
+
+                    &:last-child {
+                        border-color: transparent;
+                    }
+
+                    &:hover {
+                        background-color: #F9F9F9;
+                    }
+
+                    a {
+                        padding: 12px 18px;
+                        display: block;
+                        @include fonts(14px, 25px, 700, #2d2a2a, $secendary-fonts);
+                        letter-spacing: .2px;
+                    }
+
+                    &.active a {
+                        color: $theme-color2;
+                    }
+
+                    &.tt-sub-menu {
+                        &:hover .tt-dropdown {
+                            top: 0;
+                            opacity: 1;
+                            visibility: visible;
+                        }
+
+                        &:after {
+                            @include position(absolute, $top:15px, $right: 10px, $content:'\f105');
+                            @include size(20px);
+                        }
+
+                        .tt-dropdown {
+                            opacity: 0;
+                            visibility: hidden;
+                            min-width: 200px;
+                            background-color: #fff;
+                            border: 1px solid rgba(58, 77, 105, .2);
+                            @include position(absolute, $top: 10px, $left:100%);
+                            @include transition(top .2s, opacity .2s, visibility .3s);
+                        }
+                    }
+                }
+            }
+
+            .nav-tabs {
+                display: none;
+
+                li {
+                    a {
+                        text-align: center;
+                        display: block;
+                        @include fonts(14px, 50px, 700, #909090, $secendary-fonts);
+                        border-bottom: 1px solid rgba(129, 129, 129, .15);
+                        letter-spacing: .3px;
+                        text-transform: uppercase;
+                        @include transition(background-color .25s ease, color .25s ease);
+
+                        &.active {
+                            color: #2d2a2a;
+                            border-color: $theme-color2;
+                            background-color: rgba(0, 0, 0, .05);
+                        }
+                    }
+                }
+
+            }
+
+            .tab-content {
+
+                .tab-pane {
+
+                    .tab-pane-title {
+                        position: relative;
+                        display: block;
+                        padding: 10px 20px;
+                        letter-spacing: .4px;
+                        border-bottom: 1px solid rgba(129, 129, 129, .15);
+                        text-transform: uppercase;
+                        background-color: rgba(255, 255, 255, 1);
+                        @include fonts(14px, 30px, 700, #333, $secendary-fonts);
+                        @include transition(all .25s ease, height 0s ease);
+                        height: 50px;
+
+                        .icon {
+                            font-size: 20px;
+                            @include transform(translateY(-50%));
+                            @include position(absolute, $top: 50%, $right: 20px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

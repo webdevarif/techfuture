@@ -1,0 +1,63 @@
+/*Footer Area
+*****************************************************************************/
+footer {
+    background-color: $theme-color;
+    color: #fff;
+    padding: 80px 0 0px;
+
+    .single-footer-widget {
+        margin-bottom: 30px;
+
+        //Responsive
+        @include respond(tab-port) {
+            text-align: center;
+        }
+
+        .widget-title {
+            @include fonts(15px, 24px, 800, #fff, $secendary-fonts);
+            margin-bottom: 15px;
+        }
+
+        .link-list1 li a {
+            @include fonts(13px, 30px, 600, rgba(255, 255, 255, .8), $primary-fonts);
+
+            &:hover {
+                color: $theme-color2;
+            }
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .subscribe_area {
+            position: relative;
+
+            .form-control {
+                @include border-radius(0);
+                border: 1px solid rgba(255, 255, 255, .25);
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .bottom-list {
+        position: relative;
+
+        &:after {
+            content: '';
+            background: rgba(#F9F9F9, .1);
+            @include size(calc(100% - 30px), 1px);
+            @include position(absolute, $top: 0, $left: 15px);
+        }
+
+        .papyment-gateway,
+        .copyright-text {
+            margin: 20px 0;
+
+            span {
+                margin-right: 10px;
+            }
+        }
+    }
+}
